@@ -85,7 +85,7 @@
               <h4 class="mb-2">Jadilah bagian dari kami.</h4>
               <p class="mb-4">Mudahkan pekerjaan dengan manajemen data!</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html">
+              <form id="formAuthentication" class="mb-3" action="<?= base_url('auth/register'); ?>" method="POST">
                 <div class="form-floating form-floating-outline mb-3">
                   <input
                     type="text"
@@ -95,6 +95,8 @@
                     placeholder="John Doel"
                     autofocus />
                   <label for="name">Nama Lengkap</label>
+                  <!-- Form error -->
+                  <?= form_error('name','<small class="text-danger pl-3">','</small>'); ?>
                 </div>
                 <div class="form-floating form-floating-outline mb-3">
                   <input
@@ -104,18 +106,37 @@
                     name="email"
                     placeholder="Enter your email" />
                   <label for="email">Email</label>
+                  <?= form_error('email','<small class="text-danger pl-3">','</small>'); ?>
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <div class="input-group input-group-merge">
                     <div class="form-floating form-floating-outline">
                       <input
                         type="password"
-                        id="password"
+                        id="password1"
                         class="form-control"
-                        name="password"
+                        name="password1"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password" />
                       <label for="password">Password</label>
+                      <?= form_error('password1','<small class="text-danger pl-3">','</small>'); ?>
+                    </div>
+                    <span class="input-group-text cursor-pointer"
+                      ><i class="mdi mdi-eye-off-outline"></i
+                    ></span>
+                  </div>
+                </div>
+                <div class="mb-3 form-password-toggle">
+                  <div class="input-group input-group-merge">
+                    <div class="form-floating form-floating-outline">
+                      <input
+                        type="password"
+                        id="password2"
+                        class="form-control"
+                        name="password2"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                        aria-describedby="password" />
+                      <label for="password">Ulangi Password</label>
                     </div>
                     <span class="input-group-text cursor-pointer"
                       ><i class="mdi mdi-eye-off-outline"></i

@@ -48,21 +48,25 @@
 
           <div class="card-body mt-2">
             <p class="text-center">Sign-in ke akun kamu</p>
-
-            <form id="formAuthentication" class="mb-3" action="index.html">
+            <!-- Form login -->
+            <?= $this->session->flashdata('message'); ?>  
+            <form id="formAuthentication" class="mb-3" action="<?= base_url('auth'); ?>" method="POST">
               <div class="form-floating form-floating-outline mb-3">
-                <input type="text" class="form-control" id="email" name="email-username"
-                  placeholder="Enter your email or username" autofocus />
+                <!-- Input email -->
+                <input type="text" class="form-control" id="email" name="email"
+                  placeholder="Enter your email" autofocus />
                 <label for="email">Email</label>
+                <?= form_error('email', '<small class="text-danger">', '</small>');?>
               </div>
               <div class="mb-3">
                 <div class="form-password-toggle">
                   <div class="input-group input-group-merge">
                     <div class="form-floating form-floating-outline">
-                      <input type="password" id="password" class="form-control" name="password"
+                      <input type="password" id="password1" class="form-control" name="password1"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password" />
                       <label for="password">Password</label>
+                      <?= form_error('password', '<small class="text-danger">', '</small>');?>
                     </div>
                     <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
                   </div>
@@ -70,9 +74,9 @@
               </div>
               <div class="mb-3 d-flex justify-content-between">
 
-                <a href="auth-forgot-password-basic.html" class="float-end mb-1">
+                <!-- <a href="auth-forgot-password-basic.html" class="float-end mb-1">
                   <span>Lupa password?</span>
-                </a>
+                </a> -->
               </div>
               <div class="mb-3">
                 <button class="btn btn-primary d-grid w-100" type="submit">

@@ -91,47 +91,48 @@
           <div class="menu-inner-shadow"></div>
 
           <ul class="menu-inner py-1">
+            <!-- Query Menu -->
+            <?php 
+            $role_id = $this->session->userdata('role_id');
+            $queryMenu = "SELECT `user_menu`.`id`, `menu`
+                            FROM `user_menu` JOIN `user_access_menu`
+                              ON `user_menu`.`id` = `user_access_menu`.`menu_id`
+                           WHERE `user_access_menu`.`role_id` = $role_id
+                        ORDER BY `user_access_menu`.`menu_id` ASC
+                        ";
+            $menu = $this->db->query($queryMenu)->result_array();            
+            ?>
+             <!-- Looping menu -->
+            <?php foreach ($menu as $m) : ?>
+            <!-- End -->
             <li class="menu-header fw-medium mt-4">
-              <span class="menu-header-text">Admin Menu</span>
+              <span class="menu-header-text"><?= $m['menu']; ?></span>
             </li>
+            <?php
+              $menuId = $m['id'];
+              $querySubMenu = "SELECT *
+                               FROM `user_sub_menu` JOIN `user_menu`
+                               ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
+                               WHERE `user_sub_menu`.`menu_id` = $menuId 
+                               AND `user_sub_menu`.`is_active` = 1   
+                              ";
+              $subMenu = $this->db->query($querySubMenu)->result_array();                
+            ?>
+            <?php foreach ($subMenu as $sm) :?>
+                    <?php if ($title == $sm['title']) : ?>  
             
             <li class="menu-item active">
-             <a href="<?= base_url('admin'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
-                <div data-i18n="Support">Dashboard</div>
-              </a>
-            </li>
-            <!-- User role -->
-            <li class="menu-item">
-              <a href="<?= base_url('admin/user_role'); ?>" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-                <div data-i18n="Support">User Role</div>
-              </a>
-            </li>
-            
-
-            <!-- Layouts -->
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
-                <div data-i18n="Layouts">Point of Sales (POS)</div>
-              </a>
-
-              <ul class="menu-sub">
+               <?php else : ?>
                 <li class="menu-item">
-                  <a href="ticket.html" class="menu-link">
-                    <div data-i18n="Without menu">Register</div>
-                    <div class="badge bg-danger rounded-pill ms-auto">1</div>
-                  </a>
-                </li>
-                
-              </ul>
+                  <?php endif ; ?>
+             <a href="<?= base_url($sm['url']); ?>" class="menu-link">
+                <i class="<?= $sm['icon']; ?>"></i>
+                <div data-i18n="Support"><?= $sm['title']; ?></div>
+              </a>
             </li>
-
-            
-            
-
-            
+            <?php endforeach; ?>
+          
+            <?php endforeach; ?>
             <!-- Misc -->
             <li class="menu-header fw-medium mt-4">
               <span class="menu-header-text">Misc</span>
@@ -148,4 +149,4 @@
             
           </ul>
         </aside>
-        <!-- / Menu -->
+       

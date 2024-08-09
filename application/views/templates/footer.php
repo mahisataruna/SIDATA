@@ -32,10 +32,10 @@
                     >
 
                     <a
-                      href="#"
+                      href="https://buymeacoffee.com/algorithmdev"
                       target="_blank"
                       class="footer-link"
-                      >Support</a
+                      >Support Me</a
                     >
                   </div>
                 </div>
@@ -66,6 +66,8 @@
     <script src="<?= base_url('assets/'); ?>vendor/js/menu.js"></script>
 
     <!-- endbuild -->
+    <!-- buy me a coffe -->
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="algorithmdev" data-description="Support me on Buy me a coffee!" data-message="" data-color="#BD5FFF" data-position="left" data-x_margin="18" data-y_margin="18"></script>
 
     <!-- Vendors JS -->
     <script src="<?= base_url('assets/'); ?>vendor/libs/apex-charts/apexcharts.js"></script>
